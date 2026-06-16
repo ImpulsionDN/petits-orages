@@ -421,8 +421,14 @@ async function genererConseil(){
         headers:{"Content-Type":"application/json"},
         body: JSON.stringify({age, situation, details})
       });
-      if(!res.ok) throw new Error("réseau");
-      data = await res.json();
+      const brut = await res.text();
+      if(!res.ok){
+        document.getElementById('tipTitle').textContent = "Diagnostic — code " + res.status;
+        document.getElementById('tipBody').textContent = brut;
+        tip.classList.add('show');
+        return;
+      }
+      data = JSON.parse(brut);
     }
     document.getElementById('tipTitle').textContent = data.titre || "Votre conseil";
     document.getElementById('tipBody').textContent  = data.texte || "";
