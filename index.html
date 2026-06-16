@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Petits Orages — Apaiser les colères et les émotions de votre enfant</title>
+<meta name="description" content="Décrivez la situation, recevez un premier conseil gratuit, puis un plan personnalisé pour apaiser les colères et les émotions de votre enfant.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF7F2;
+    --paper-2:#F4ECE1;
+    --ink:#2C3E44;
+    --ink-soft:#5A6E73;
+    --teal:#3F8783;
+    --teal-deep:#336E6B;
+    --teal-wash:#E0EBE8;
+    --apricot:#E89B73;
+    --apricot-deep:#D87C50;
+    --line:#E7DCCD;
+    --radius:18px;
+    --shadow:0 18px 50px -24px rgba(44,62,68,.35);
+    --maxw:1040px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Mulish",system-ui,sans-serif;font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:500;line-height:1.12;margin:0}
+  p{margin:0 0 1em}
+  a{color:var(--teal-deep)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{
+    font-family:"Mulish";font-weight:700;font-size:12.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--teal-deep);margin:0 0 14px
+  }
+
+  /* ---------- top bar ---------- */
+  header.bar{position:sticky;top:0;z-index:20;background:rgba(251,247,242,.86);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:"Fraunces";font-size:21px;font-weight:600;color:var(--ink);text-decoration:none}
+  .brand .mark{width:26px;height:26px;flex:none}
+  .bar nav a{margin-left:24px;color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:15px}
+  .bar nav a:hover{color:var(--teal-deep)}
+  @media(max-width:680px){.bar nav{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:70px 0 56px}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(120% 80% at 78% -10%, #CFE3E0 0%, rgba(207,227,224,0) 55%),
+      radial-gradient(90% 70% at 10% 0%, #F6E2CF 0%, rgba(246,226,207,0) 50%),
+      linear-gradient(180deg,#EEF4F1 0%, var(--paper) 70%)}
+  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(33px,5vw,52px)}
+  .hero h1 em{font-style:italic;color:var(--teal-deep)}
+  .hero .lede{font-size:19px;color:var(--ink-soft);max-width:30em;margin-top:18px}
+  @media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:30px}.hero{padding:46px 0 40px}}
+
+  /* ---------- generator card ---------- */
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .gen{padding:26px}
+  .gen h3{font-size:22px;margin-bottom:4px}
+  .gen .hint{color:var(--ink-soft);font-size:14.5px;margin-bottom:18px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-weight:700;font-size:13.5px;margin-bottom:6px;color:var(--ink)}
+  .field select,.field input,.field textarea{
+    width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:12px;
+    background:var(--paper);font:inherit;color:var(--ink)}
+  .field textarea{resize:vertical;min-height:64px}
+  .field select:focus,.field input:focus,.field textarea:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+    border:none;border-radius:12px;font:inherit;font-weight:700;padding:14px 22px;text-decoration:none;transition:transform .12s ease,box-shadow .2s ease}
+  .btn-primary{background:var(--teal);color:#fff}
+  .btn-primary:hover{background:var(--teal-deep);transform:translateY(-1px)}
+  .btn-warm{background:var(--apricot);color:#3a2417}
+  .btn-warm:hover{background:var(--apricot-deep);color:#fff;transform:translateY(-1px)}
+  .btn-block{width:100%}
+  .btn[disabled]{opacity:.6;cursor:wait}
+
+  .tip{margin-top:18px;border:1px solid var(--teal-wash);background:var(--teal-wash);
+    border-radius:14px;padding:18px 18px 16px;display:none}
+  .tip.show{display:block;animation:rise .4s ease both}
+  .tip .tag{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
+  .tip h4{font-family:"Fraunces";font-size:19px;margin:6px 0 8px}
+  .tip p{font-size:15.5px;color:#274348;margin:0 0 10px}
+  .tip .cta-row{margin-top:6px}
+  .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;display:inline-block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0}
+  .section-head{max-width:34em;margin-bottom:34px}
+  .section-head h2{font-size:clamp(26px,3.6vw,38px)}
+  .section-head p{color:var(--ink-soft);margin-top:12px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}}
+  .step{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .step .n{font-family:"Fraunces";font-size:15px;font-weight:600;color:var(--apricot-deep);display:block;margin-bottom:10px}
+  .step h3{font-size:20px;margin-bottom:8px}
+  .step p{color:var(--ink-soft);font-size:15px;margin:0}
+
+  /* ---------- compare / offer ---------- */
+  .offer{background:linear-gradient(180deg,#F0E5D6 0%, #FBF7F2 100%)}
+  .compare{display:grid;grid-template-columns:1fr 1.15fr;gap:20px;align-items:stretch}
+  @media(max-width:820px){.compare{grid-template-columns:1fr}}
+  .plan{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column}
+  .plan.full{border:2px solid var(--teal);box-shadow:var(--shadow);position:relative}
+  .plan .ribbon{position:absolute;top:-13px;right:22px;background:var(--teal);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;padding:5px 12px;border-radius:999px}
+  .plan h3{font-size:23px;margin-bottom:4px}
+  .plan .price{font-family:"Fraunces";font-size:40px;font-weight:600;color:var(--ink);margin:8px 0 2px}
+  .plan .price small{font-size:15px;font-family:"Mulish";color:var(--ink-soft);font-weight:600}
+  .plan .price-note{color:var(--ink-soft);font-size:13.5px;margin-bottom:16px}
+  ul.list{list-style:none;margin:0 0 22px;padding:0;flex:1}
+  ul.list li{position:relative;padding:7px 0 7px 28px;font-size:15px;border-bottom:1px dashed var(--line)}
+  ul.list li:last-child{border-bottom:none}
+  ul.list li::before{content:"";position:absolute;left:0;top:13px;width:14px;height:14px;border-radius:50%;
+    background:var(--teal-wash);box-shadow:inset 0 0 0 2px var(--teal)}
+  ul.list.muted li::before{background:#EFE7DB;box-shadow:inset 0 0 0 2px #C9BBA6}
+
+  /* ---------- plan output ---------- */
+  #planZone{display:none;padding-top:8px}
+  #planZone.show{display:block}
+  .plan-output{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);white-space:pre-wrap;font-size:16px;line-height:1.7}
+  .plan-output h2{font-family:"Fraunces"}
+
+  /* ---------- reassurance ---------- */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.quotes{grid-template-columns:1fr}}
+  .quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .quote p{font-family:"Fraunces";font-style:italic;font-size:17px;color:var(--ink);margin:0 0 12px}
+  .quote .who{font-size:13.5px;color:var(--ink-soft);font-weight:600}
+  .stars{color:var(--apricot-deep);letter-spacing:2px;font-size:14px;margin-bottom:8px}
+
+  /* ---------- faq ---------- */
+  details.faq{border-bottom:1px solid var(--line);padding:16px 0}
+  details.faq summary{cursor:pointer;font-weight:700;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::after{content:"+";color:var(--teal-deep);font-size:22px;font-weight:400}
+  details.faq[open] summary::after{content:"–"}
+  details.faq p{color:var(--ink-soft);margin:12px 0 0;font-size:15.5px}
+
+  .disclaimer{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-size:14px;color:var(--ink-soft);margin-top:26px}
+
+  footer{background:var(--ink);color:#C4D2D4;padding:42px 0 36px;font-size:14px}
+  footer a{color:#E3EDED}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+  footer .links a{margin-left:18px}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M5 20c0-5 4-9 9-9 3.6 0 6.7 2.1 8.1 5.2C24.9 16.6 27 18.9 27 22a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5 4.9 4.9 0 0 1 .1-1.1Z" fill="#CFE3E0" stroke="#3F8783" stroke-width="1.5"/>
+        <path d="M20 6.5c1.6 0 3 1.2 3.3 2.8M24.5 4.2c2.6.2 4.7 2.3 4.9 5" stroke="#E89B73" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Petits&nbsp;Orages
+    </a>
+    <nav>
+      <a href="#comment">Comment ça marche</a>
+      <a href="#plan">Le plan complet</a>
+      <a href="#faq">Questions</a>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Pour les parents d'enfants de 1 à 10 ans</p>
+      <h1>Quand votre enfant est dans la tempête,<br><em>voici comment retrouver le calme.</em></h1>
+      <p class="lede">Décrivez ce qui se passe à la maison. Recevez un premier conseil personnalisé, gratuitement, en quelques secondes — sans culpabilité, sans jargon.</p>
+    </div>
+
+    <div class="card gen" id="generateur">
+      <h3>Recevez votre premier conseil</h3>
+      <p class="hint">Gratuit. Aucune inscription pour le conseil de départ.</p>
+
+      <div class="field">
+        <label for="age">Âge de votre enfant</label>
+        <select id="age">
+          <option value="">Choisissez…</option>
+          <option>Moins de 2 ans</option>
+          <option>2 à 3 ans</option>
+          <option>4 à 5 ans</option>
+          <option>6 à 7 ans</option>
+          <option>8 à 10 ans</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="situation">La situation qui vous préoccupe</label>
+        <select id="situation">
+          <option value="">Choisissez…</option>
+          <option>Colères et crises intenses</option>
+          <option>Coucher et endormissement difficiles</option>
+          <option>Opposition, refus, « non » systématique</option>
+          <option>Transitions (s'habiller, partir, ranger…)</option>
+          <option>Jalousie et disputes entre frères et sœurs</option>
+          <option>Anxiété, peurs, pleurs au moment de la séparation</option>
+          <option>Écrans : conflits et tensions</option>
+          <option>Autre situation</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="details">En une phrase, que se passe-t-il ? (facultatif)</label>
+        <textarea id="details" placeholder="Ex. : il fait une crise énorme chaque soir au moment du bain…"></textarea>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="goBtn" onclick="genererConseil()">Recevoir mon conseil gratuit</button>
+
+      <div class="tip" id="tip">
+        <span class="tag">Votre conseil personnalisé</span>
+        <h4 id="tipTitle"></h4>
+        <p id="tipBody"></p>
+        <div class="cta-row">
+          <a class="btn btn-warm" href="#plan">Obtenir le plan complet →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- plan output zone (affiché après paiement) -->
+<section id="planZone">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Merci pour votre confiance</p>
+      <h2>Votre plan personnalisé</h2>
+      <p>Une copie vient également de vous être envoyée par e-mail.</p>
+    </div>
+    <div class="plan-output" id="planOutput">Préparation de votre plan…</div>
+  </div>
+</section>
+
+<section id="comment">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Simple et rapide</p>
+      <h2>Trois étapes pour retrouver le calme</h2>
+      <p>Pas de théorie interminable. Des mots à dire et des gestes à poser, adaptés à l'âge de votre enfant et à votre situation précise.</p>
+    </div>
+    <div class="grid3">
+      <div class="step">
+        <span class="n">Étape 1</span>
+        <h3>Vous décrivez la tempête</h3>
+        <p>L'âge de l'enfant, la situation qui coince, et ce qui se passe concrètement chez vous.</p>
+      </div>
+      <div class="step">
+        <span class="n">Étape 2</span>
+        <h3>Vous recevez un premier conseil</h3>
+        <p>Un conseil ciblé et bienveillant, gratuit, pour comprendre et amorcer le changement dès ce soir.</p>
+      </div>
+      <div class="step">
+        <span class="n">Étape 3</span>
+        <h3>Vous débloquez le plan complet</h3>
+        <p>Un plan personnalisé sur 7 jours, avec les phrases exactes à dire, livré à l'écran et par e-mail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer" id="plan">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Le plan complet</p>
+      <h2>Tout ce dont vous avez besoin, en un seul plan</h2>
+      <p>Conçu pour les soirs difficiles : à lire en 10 minutes, à appliquer tout de suite.</p>
+    </div>
+
+    <div class="compare">
+      <div class="plan">
+        <h3>Le conseil gratuit</h3>
+        <div class="price">0&nbsp;€</div>
+        <div class="price-note">Sans inscription</div>
+        <ul class="list muted">
+          <li>1 conseil ciblé selon l'âge et la situation</li>
+          <li>Une première piste pour ce soir</li>
+          <li>Disponible immédiatement</li>
+        </ul>
+        <a class="btn btn-primary" href="#generateur">Commencer gratuitement</a>
+      </div>
+
+      <div class="plan full">
+        <span class="ribbon">Le plus complet</span>
+        <h3>Le plan personnalisé</h3>
+        <div class="price">14,99&nbsp;€ <small>paiement unique</small></div>
+        <div class="price-note">Accès immédiat + envoi par e-mail</div>
+        <ul class="list">
+          <li>Comprendre ce qui se joue chez votre enfant, selon son âge</li>
+          <li>4 à 6 stratégies concrètes adaptées à <em>votre</em> situation</li>
+          <li>Les phrases exactes à dire (et celles à éviter)</li>
+          <li>Un plan jour par jour sur 7 jours</li>
+          <li>Quoi faire dans l'instant de crise</li>
+          <li>Les repères pour savoir quand consulter un professionnel</li>
+        </ul>
+        <!-- ⬇⬇ REMPLACEZ par votre lien de paiement Stripe ⬇⬇ -->
+        <a class="btn btn-warm btn-block" id="payBtn" href="https://buy.stripe.com/VOTRE_LIEN_STRIPE">Obtenir mon plan — 14,99 €</a>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Bon à savoir.</strong> Petits Orages propose un accompagnement éducatif et bienveillant inspiré des approches reconnues de la parentalité positive. Il ne remplace pas l'avis d'un professionnel de santé. Si les difficultés persistent, s'aggravent, ou vous inquiètent, parlez-en à votre médecin, votre pédiatre ou un psychologue.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Vous n'êtes pas seul·e</p>
+      <h2>Des parents comme vous</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>« Le premier soir, j'ai essayé une seule phrase du plan. La crise du coucher a duré moitié moins longtemps. »</p>
+        <div class="who">Sandra, maman de Léo (4 ans)</div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>« Enfin des conseils concrets et pas culpabilisants. Je savais quoi dire au lieu de m'énerver. »</p>
+        <div class="who">Karim, papa de Jade (6 ans)</div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>« Le plan sur 7 jours nous a donné un cap. On était perdus, on a retrouvé de la sérénité. »</p>
+        <div class="who">Émilie, maman de deux enfants</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Ce que les parents nous demandent</h2>
+    </div>
+    <details class="faq"><summary>Comment le conseil est-il personnalisé ?</summary>
+      <p>Votre plan est rédigé sur mesure à partir des informations que vous donnez (âge, situation, contexte) à l'aide d'une technologie d'intelligence artificielle, puis structuré selon les principes de la parentalité bienveillante.</p>
+    </details>
+    <details class="faq"><summary>Le plan est-il valable pour tous les âges ?</summary>
+      <p>Le contenu s'adapte à la tranche d'âge que vous indiquez, de la petite enfance jusqu'à environ 10 ans. Les besoins d'un enfant de 2 ans et d'un enfant de 8 ans étant très différents, le plan en tient compte.</p>
+    </details>
+    <details class="faq"><summary>Que se passe-t-il après le paiement ?</summary>
+      <p>Votre plan complet s'affiche immédiatement à l'écran et vous est aussi envoyé par e-mail, pour le relire au calme quand vous en avez besoin.</p>
+    </details>
+    <details class="faq"><summary>Est-ce un avis médical ou psychologique ?</summary>
+      <p>Non. Petits Orages est un accompagnement éducatif. Il ne remplace pas une consultation avec un professionnel de santé. En cas de doute ou de difficulté importante, parlez-en à votre médecin ou à un psychologue.</p>
+    </details>
+    <details class="faq"><summary>Puis-je être remboursé·e ?</summary>
+      <p>Le plan étant un contenu numérique personnalisé délivré immédiatement, contactez-nous en cas de problème : nous trouvons toujours une solution.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> Petits Orages — Apaiser les colères et les émotions de votre enfant.</div>
+    <div class="links">
+      <a href="#plan">Le plan</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:contact@petits-orages.fr">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   CONFIGURATION — à compléter une seule fois
+   ========================================================= */
+const WORKER_URL = "https://VOTRE-WORKER.workers.dev"; // ← URL de votre Cloudflare Worker
+/* ========================================================= */
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const SAMPLE = {
+  titre:"Nommez l'émotion avant de corriger le comportement",
+  texte:"Avant toute consigne, mettez des mots sur ce que vit votre enfant : « Tu es très en colère parce que c'est l'heure d'arrêter. » Ce simple geste désamorce une grande partie de la tension, car l'enfant se sent compris plutôt que combattu. Une fois le calme amorcé, vous pourrez poser la limite avec douceur et fermeté. (Ceci est un exemple : connectez votre Worker pour des conseils 100 % personnalisés.)"
+};
+
+async function genererConseil(){
+  const age = document.getElementById('age').value;
+  const situation = document.getElementById('situation').value;
+  const details = document.getElementById('details').value.trim();
+  const btn = document.getElementById('goBtn');
+  const tip = document.getElementById('tip');
+
+  if(!age || !situation){
+    alert("Indiquez l'âge de votre enfant et la situation pour recevoir un conseil adapté.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Un instant…';
+
+  try{
+    let data;
+    if(WORKER_URL.includes("VOTRE-WORKER")){
+      await new Promise(r=>setTimeout(r,650));   // mode démo
+      data = SAMPLE;
+    } else {
+      const res = await fetch(WORKER_URL + "/conseil", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({age, situation, details})
+      });
+      if(!res.ok) throw new Error("réseau");
+      data = await res.json();
+    }
+    document.getElementById('tipTitle').textContent = data.titre || "Votre conseil";
+    document.getElementById('tipBody').textContent  = data.texte || "";
+    tip.classList.add('show');
+    tip.scrollIntoView({behavior:"smooth", block:"nearest"});
+  }catch(e){
+    document.getElementById('tipTitle').textContent = "Conseil momentanément indisponible";
+    document.getElementById('tipBody').textContent  = "Réessayez dans un instant. Si le souci persiste, écrivez-nous à contact@petits-orages.fr.";
+    tip.classList.add('show');
+  }finally{
+    btn.disabled = false;
+    btn.textContent = "Recevoir mon conseil gratuit";
+  }
+}
+
+/* ---- Après paiement Stripe : Stripe redirige vers
+   ...?paye=ok&session_id={CHECKOUT_SESSION_ID} ---- */
+(async function afficherPlanApresPaiement(){
+  const params = new URLSearchParams(location.search);
+  if(params.get('paye') !== 'ok') return;
+  const session = params.get('session_id');
+  const zone = document.getElementById('planZone');
+  const out  = document.getElementById('planOutput');
+  zone.classList.add('show');
+  zone.scrollIntoView({behavior:"smooth"});
+  try{
+    const res = await fetch(WORKER_URL + "/plan", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({session_id: session})
+    });
+    if(!res.ok) throw new Error();
+    const data = await res.json();
+    out.textContent = data.plan || "Votre plan est en cours d'envoi par e-mail.";
+  }catch(e){
+    out.textContent = "Votre paiement est bien reçu. Si votre plan ne s'affiche pas, vérifiez votre boîte e-mail ou écrivez-nous à contact@petits-orages.fr.";
+  }
+})();
+</script>
+</body>
+</html>
