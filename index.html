@@ -245,6 +245,13 @@
       <p>Une copie vient également de vous être envoyée par e-mail.</p>
     </div>
     <div class="plan-output" id="planOutput">Préparation de votre plan…</div>
+
+    <div id="bonusZone" style="display:none;margin-top:26px;background:var(--teal-wash);border:1px solid var(--teal);border-radius:var(--radius);padding:26px">
+      <h3 style="font-size:21px;margin-bottom:6px">🎁 Vos 2 ebooks offerts</h3>
+      <p style="color:var(--ink-soft);font-size:15.5px;margin-bottom:18px">Cliquez pour les télécharger. Ils vous ont aussi été envoyés par e-mail, en pièces jointes.</p>
+      <a class="btn btn-primary" style="margin:0 12px 12px 0" href="Comprendre%20et%20apaiser%20les%20%C3%A9motions%20de%20son%20enfant.pdf" download="Comprendre et apaiser les émotions de son enfant.pdf">📘 Comprendre et apaiser les émotions</a>
+      <a class="btn btn-primary" style="margin:0 12px 12px 0" href="G%C3%A9rer%20les%20crises%20de%20col%C3%A8re%20de%20son%20enfant.pdf" download="Gérer les crises de colère de son enfant.pdf">📕 Gérer les crises de colère</a>
+    </div>
   </div>
 </section>
 
@@ -299,8 +306,8 @@
       <div class="plan full">
         <span class="ribbon">Le plus complet</span>
         <h3>Le plan personnalisé</h3>
-        <div class="price">14,99&nbsp;€ <small>paiement unique</small></div>
-        <div class="price-note">Accès immédiat + envoi par e-mail</div>
+        <div class="price">29&nbsp;€ <small>paiement unique</small></div>
+        <div class="price-note">Accès immédiat · à l'écran, par e-mail et en téléchargement</div>
         <ul class="list">
           <li>Comprendre ce qui se joue chez votre enfant, selon son âge</li>
           <li>4 à 6 stratégies concrètes adaptées à <em>votre</em> situation</li>
@@ -308,9 +315,9 @@
           <li>Un plan jour par jour sur 7 jours</li>
           <li>Quoi faire dans l'instant de crise</li>
           <li>Les repères pour savoir quand consulter un professionnel</li>
+          <li><strong>🎁 En cadeau : 2 ebooks complets offerts</strong> (valeur 30 €)</li>
         </ul>
-        <!-- ⬇⬇ REMPLACEZ par votre lien de paiement Stripe ⬇⬇ -->
-        <a class="btn btn-warm btn-block" id="payBtn" href="#" onclick="allerAuPaiement(event)">Obtenir mon plan — 14,99 €</a>
+        <a class="btn btn-warm btn-block" id="payBtn" href="#" onclick="allerAuPaiement(event)">Obtenir mon plan — 29 €</a>
       </div>
     </div>
 
@@ -386,7 +393,7 @@
    CONFIGURATION — à compléter une seule fois
    ========================================================= */
 const WORKER_URL = "https://petits-orages-passerelle.dni-business44.workers.dev"; // ← URL de votre Cloudflare Worker
-const STRIPE_LINK = "https://buy.stripe.com/28E5kv4cy5UaarqgGedZ605"; // ← votre lien de paiement Stripe
+const STRIPE_LINK = "https://buy.stripe.com/4gM28j38uaaqarqblUdZ606"; // ← votre lien de paiement Stripe
 /* ========================================================= */
 
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -472,6 +479,8 @@ function allerAuPaiement(e){
     if(!res.ok) throw new Error();
     const data = await res.json();
     out.textContent = data.plan || "Votre plan est en cours d'envoi par e-mail.";
+    const bonus = document.getElementById('bonusZone');
+    if(bonus) bonus.style.display = 'block';
   }catch(e){
     out.textContent = "Votre paiement est bien reçu. Si votre plan ne s'affiche pas, vérifiez votre boîte e-mail ou écrivez-nous à contact@petits-orages.fr.";
   }
