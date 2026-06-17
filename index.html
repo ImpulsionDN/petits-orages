@@ -310,7 +310,7 @@
           <li>Les repères pour savoir quand consulter un professionnel</li>
         </ul>
         <!-- ⬇⬇ REMPLACEZ par votre lien de paiement Stripe ⬇⬇ -->
-        <a class="btn btn-warm btn-block" id="payBtn" href="https://buy.stripe.com/VOTRE_LIEN_STRIPE">Obtenir mon plan — 14,99 €</a>
+        <a class="btn btn-warm btn-block" id="payBtn" href="#" onclick="allerAuPaiement(event)">Obtenir mon plan — 14,99 €</a>
       </div>
     </div>
 
@@ -386,6 +386,7 @@
    CONFIGURATION — à compléter une seule fois
    ========================================================= */
 const WORKER_URL = "https://petits-orages-passerelle.dni-business44.workers.dev"; // ← URL de votre Cloudflare Worker
+const STRIPE_LINK = "https://buy.stripe.com/28E5kv4cy5UaarqgGedZ605"; // ← votre lien de paiement Stripe
 /* ========================================================= */
 
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -421,14 +422,8 @@ async function genererConseil(){
         headers:{"Content-Type":"application/json"},
         body: JSON.stringify({age, situation, details})
       });
-      const brut = await res.text();
-      if(!res.ok){
-        document.getElementById('tipTitle').textContent = "Diagnostic — code " + res.status;
-        document.getElementById('tipBody').textContent = brut;
-        tip.classList.add('show');
-        return;
-      }
-      data = JSON.parse(brut);
+      if(!res.ok) throw new Error("réseau");
+      data = await res.json();
     }
     document.getElementById('tipTitle').textContent = data.titre || "Votre conseil";
     document.getElementById('tipBody').textContent  = data.texte || "";
@@ -444,6 +439,18 @@ async function genererConseil(){
   }
 }
 
+/* ---- Clic sur "Obtenir mon plan" : on mémorise les réponses, puis on va payer ---- */
+function allerAuPaiement(e){
+  if(e) e.preventDefault();
+  const data = {
+    age: document.getElementById('age').value,
+    situation: document.getElementById('situation').value,
+    details: document.getElementById('details').value.trim()
+  };
+  try { localStorage.setItem('po_reponses', JSON.stringify(data)); } catch(_){}
+  window.location.href = STRIPE_LINK;
+}
+
 /* ---- Après paiement Stripe : Stripe redirige vers
    ...?paye=ok&session_id={CHECKOUT_SESSION_ID} ---- */
 (async function afficherPlanApresPaiement(){
@@ -454,11 +461,13 @@ async function genererConseil(){
   const out  = document.getElementById('planOutput');
   zone.classList.add('show');
   zone.scrollIntoView({behavior:"smooth"});
+  let rep = {};
+  try { rep = JSON.parse(localStorage.getItem('po_reponses') || '{}'); } catch(_){}
   try{
     const res = await fetch(WORKER_URL + "/plan", {
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({session_id: session})
+      body: JSON.stringify({session_id: session, age: rep.age, situation: rep.situation, details: rep.details})
     });
     if(!res.ok) throw new Error();
     const data = await res.json();
